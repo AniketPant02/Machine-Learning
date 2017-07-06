@@ -37,4 +37,3 @@ print(linreg.coef_)
 # Pair features with respective coefficents
 featureCoef = list(zip(feature_cols, linreg.coef_))
 print(featureCoef)
-
