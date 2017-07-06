@@ -20,4 +20,8 @@ knn = KNeighborsClassifier(n_neighbors=1)
 # Fitting data to model
 knn.fit(X, y)
 
-knn.predict([[3,5,4,2]])
+# Predicting Multiple Sets at Once
+z = knn.predict([[3,5,4,2], [3,6,7,2]])
+
+# Printing results
+print (z)
