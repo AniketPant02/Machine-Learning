@@ -20,6 +20,6 @@ knn = KNeighborsClassifier(n_neighbors=1)
 # Fitting data to model
 knn.fit(X, y)
 
-z = knn.predict([[3,5,4,2]])
+z = knn.predict([[3,5,4,2], [3,2,4,1]])
 
 print (z)
