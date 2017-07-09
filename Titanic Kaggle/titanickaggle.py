@@ -47,7 +47,7 @@ knn.fit(X_train, y_train)
 
 submission = pd.DataFrame({
         "PassengerId": testData.index,
-        "Survived": knn.predict(X_test, y_test)
+        "Survived": knn.predict(X_test)
     })
 
-submission.to_csv('test.csv', index=False)
+submission.to_csv('test1.csv', index=False)
