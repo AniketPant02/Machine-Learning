@@ -25,8 +25,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 knn = KNeighborsClassifier(n_neighbors=7)
 knn.fit(X, y)
-scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
-print(scores.mean())
+
 
 '''
 from sklearn.cross_validation import cross_val_score
