@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 stockFrame = pd.read_csv('C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\AppleModel\\aapl.csv')
-stockFrame = pd.to_datetime(stockFrame.Date)
-feature_cols = ['Date', 'Open', 'High', 'Low', 'Volume']
+# stockFrame = pd.to_datetime(stockFrame.Date)
+feature_cols = ['Open', 'High', 'Low', 'Volume']
 
 X = stockFrame.loc[:, feature_cols]
 y = stockFrame.Close
 
-# sns.pairplot(stockFrame, x_vars=['Date'], y_vars=['Open', 'High', 'Low', 'Close', 'Volume'], size=7, aspect=0.7, kind='reg')
+sns.pairplot(stockFrame, x_vars=['Close'], y_vars=['Open', 'High', 'Low', 'Volume'], size=7, aspect=0.7, kind='reg')

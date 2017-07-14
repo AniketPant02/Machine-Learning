@@ -56,3 +56,19 @@ X_test = X_test.fillna(method="ffill", limit=2)
 test_Predictions = knn.predict(X_test)
 
 pd.DataFrame({'PassengerId':testData.PassengerId, 'Survived':test_Predictions}).set_index('PassengerId').to_csv('submission.csv')
+
+'''
+# search for an optimal value of K for KNN
+k_range = list(range(1, 31))
+k_scores = []
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+    k_scores.append(scores.mean())
+print(k_scores)
+
+# plot the value of K for KNN (x-axis) versus the cross-validated accuracy (y-axis)
+plt.plot(k_range, k_scores)
+plt.xlabel('Value of K for KNN')
+plt.ylabel('Cross-Validated Accuracy')
+'''
