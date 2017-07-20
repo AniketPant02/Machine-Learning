@@ -40,6 +40,7 @@ X = trainData.loc[:, feature_cols]
 y = trainData.Survived
 X_test = testData.loc[:, feature_cols]
 
+'''
 # Random Forest Classifier Model
 from sklearn.ensemble import RandomForestClassifier
 # Generating Model Instance
@@ -50,3 +51,28 @@ test_Predictions = randomForest.predict(X_test)
 
 print(test_Predictions)
 pd.DataFrame({'PassengerId':testData.PassengerId, 'Survived':test_Predictions}).set_index('PassengerId').to_csv('submission.csv')
+'''
+
+from sklearn.neighbors import KNeighborsClassifier
+'''
+knn = KNeighborsClassifier(n_neighbors=7)
+knn.fit(X, y)
+
+from sklearn.cross_validation import cross_val_score
+scoresknn = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+print(scoresknn)
+'''
+# search for an optimal value of K for KNN
+from sklearn.cross_validation import cross_val_score
+k_range = list(range(1, 31))
+k_scores = []
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+    k_scores.append(scores.mean())
+print(k_scores)
+
+# plot the value of K for KNN (x-axis) versus the cross-validated accuracy (y-axis)
+plt.plot(k_range, k_scores)
+plt.xlabel('Value of K for KNN')
+plt.ylabel('Cross-Validated Accuracy')
