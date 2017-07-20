@@ -17,10 +17,10 @@ for dataframe in combineData:
     # Filling in embarked value with most prevalent port
     dataframe['Embarked'] = dataframe['Embarked'].fillna("S")
     # Filling in each NaN age value with median of feature
-    dataframe['Age'] = dataframe['Age'].fillna(dataframe['Age'].median())
+    dataframe['Age'] = dataframe['Age'].fillna(dataframe['Age'].mean())
 
 # Only apparent in Test Dataframe. Filling NaN values with median of Fare values
-testData.Fare = testData.Fare.fillna(testData['Fare'].median())
+testData.Fare = testData.Fare.fillna(testData['Fare'].mean())
 
 # Iterating through all Sex and Embarked entries in all dataframes inside "combineData" and remapping them
 for dataframe in combineData:
