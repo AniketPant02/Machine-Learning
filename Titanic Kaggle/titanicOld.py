@@ -10,6 +10,8 @@ import pandas as pd
 trainData = pd.read_csv('C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Titanic Kaggle\\data\\train.csv')
 testData = pd.read_csv('C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Titanic Kaggle\\data\\test.csv')
 
+sns.heatmap(trainData.isnull(),yticklabels=False,cbar=False,cmap='viridis')
+
 trainData['Sex'].replace('male', 1, inplace=True)
 trainData['Sex'].replace('female', 0, inplace=True)
 # Reassigning Embarked Column Values -> 0 = C, 1 = S, 2 = Q

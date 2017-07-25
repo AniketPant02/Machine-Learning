@@ -6,6 +6,7 @@ Created on Tue Jul 18 14:24:40 2017
 """
 
 # Breast Cancer Subclass Classifier - iTRAQ Data Supplicant
+# Document how many NaN values were dropped and averaged
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -15,16 +16,26 @@ clinicalData = pd.read_csv('C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-L
 pam50proteinData = pd.read_csv("C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Breast Cancer Proteomes\\breastcancerproteomes\\PAM50_proteins.csv")
 cancerProteomeData = pd.read_csv("C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Breast Cancer Proteomes\\breastcancerproteomes\\77_cancer_proteomes_CPTAC_itraq.csv")
 
-cancerProteomeData[ AO-A12D.01TCGA'] = cancerProteomeData.AO-A12D.01TCGA.fillna(cancerProteomeData['AO-A12D.01TCGA'].mean())
-testData.Fare = testData.Fare.fillna(testData['Fare'].mean())
-cancerProteomeData.pivot('RefSeq_accession_number', 'gene_name', 'AO-A12D.01TCGA')
+# cancerProteomeData.pivot('RefSeq_accession_number', 'gene_name', 'AO-A12D.01TCGA')
 
+cancerProteomeData = cancerProteomeData.drop('gene_symbol', 1)
+
+#cancerProteomeDataPivot = cancerProteomeData.pivot("AO-A12D.01TCGA", "gene_name", "RefSeq_accession_number")
+
+cancerProteomeData = cancerProteomeData.fillna(cancerProteomeData.mean())
+# sns.heatmap(cancerProteomeData.isnull(),yticklabels=False,cbar=True,cmap='viridis')
+# Data has been cleaned
+
+sns.set_style("whitegrid")
+ax = sns.barplot(x="RefSeq_accession_number", y="AO-A12D.01TCGA", data=cancerProteomeData)
+print(cancerProteomeDataPivot.head())
+'''
 plt.figure(figsize=(9,9))
 cancerProteomeDataPivot = cancerProteomeData.pivot('RefSeq_accession_number', 'gene_name', 'AO-A12D.01TCGA')
-
-
-
 '''
+
+
+'''train
 molecularVariance = pd.DataFrame({'Run Count':runCountGraph, 'MonoOxygenCount':MonoOxygenCountGraph}).set_index('Run Count').to_csv('molecularVariance.csv')
 '''
 '''
