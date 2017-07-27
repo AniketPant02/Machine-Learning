@@ -29,7 +29,7 @@ cancerProteomeData = cancerProteomeData.fillna(cancerProteomeData.mean())
 sns.set_style("whitegrid")
 #ax = sns.barplot(x="gene_name", y="AO-A12D.01TCGA", data=cancerProteomeData)
 
-clinicalData.plot()
+cancerProteomeData.plot()
 plt.title("iTRAQ Patient Sample Analysis")
 plt.xlabel("TCGA Patient Respective to CSV Index")
 plt.ylabel("Recorded Numeric Value with Respect to Recorded Field")
