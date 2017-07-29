@@ -10,6 +10,7 @@ from sklearn.grid_search import GridSearchCV
 from sklearn.ensemble.gradient_boosting import GradientBoostingClassifier
 from sklearn.cross_validation import cross_val_score
 from sklearn.feature_selection import SelectFromModel
+from sklearn.neighbors import KNeighborsClassifier
 plt.style.use('ggplot')
 
 trainData = pd.read_csv('C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Titanic Kaggle\\data\\train.csv')
@@ -209,6 +210,21 @@ def process_embarked():
 process_embarked()
 
 combined['Sex'] = combined['Sex'].map( {'female': 1, 'male': 0} ).astype(int)
+def process_pclass():
+    
+    global combined
+    # encoding into 3 categories:
+    pclass_dummies = pd.get_dummies(combined['Pclass'], prefix="Pclass")
+    
+    # adding dummy variables
+    combined = pd.concat([combined,pclass_dummies],axis=1)
+    
+    # removing "Pclass"
+    
+    combined.drop('Pclass',axis=1,inplace=True)
+
+process_pclass()
+
 
 def process_family():
 
@@ -255,7 +271,7 @@ features['importance'] = clf.feature_importances_
 features.sort_values(by=['importance'], ascending=True, inplace=True)
 features.set_index('feature', inplace=True)
 
-features.plot(kind='barh', figsize=(20, 20))
+# features.plot(kind='barh', figsize=(20, 20))
 
 model = SelectFromModel(clf, prefit=True)
 train_reduced = model.transform(train)
