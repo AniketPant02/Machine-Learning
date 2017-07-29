@@ -11,6 +11,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from datetime import datetime
+startTime = datetime.now()
 
 clinicalData = pd.read_csv('C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Breast Cancer Proteomes\\breastcancerproteomes\\clinical_data_breast_cancer.csv')
 pam50proteinData = pd.read_csv("C:\\Users\\Aniket Pant\\Documents\\GitHub\\Machine-Learning\\Breast Cancer Proteomes\\breastcancerproteomes\\PAM50_proteins.csv")
@@ -28,8 +30,8 @@ cancerProteomeData = cancerProteomeData.fillna(cancerProteomeData.mean())
 
 sns.set_style("whitegrid")
 #ax = sns.barplot(x="gene_name", y="AO-A12D.01TCGA", data=cancerProteomeData)
-
-cancerProteomeData.plot()
+cancerProteomeDataPivot = cancerProteomeData.pivot('RefSeq_accession_number', 'gene_name', 'AO-A12D.01TCGA')
+cancerProteomeDataPivot.plot()
 plt.title("iTRAQ Patient Sample Analysis")
 plt.xlabel("TCGA Patient Respective to CSV Index")
 plt.ylabel("Recorded Numeric Value with Respect to Recorded Field")
@@ -50,3 +52,4 @@ plt.ylabel('Tissue Sample', size = 15)
 plt.title('Gene Activity', size = 15)
 sns.heatmap(cancerProteomeDataPivot, annot=True, fmt='.1f', linewidths=.5, square=True, cmap='Blues_r');
 '''
+print (datetime.now() - startTime)
