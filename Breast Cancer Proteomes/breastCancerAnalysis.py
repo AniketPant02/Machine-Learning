@@ -29,6 +29,7 @@ cancerProteomeData = cancerProteomeData.fillna(cancerProteomeData.mean())
 # Data has been cleaned
 '''
 sns.set_style("whitegrid")
+<<<<<<< HEAD
 corrmat = cancerProteomeData.corr()
 f, ax = plt.subplots(figsize= (12,9))
 sns.heatmap(corrmat, vmax=.8, square=True)
@@ -37,6 +38,11 @@ ax = sns.barplot(x="gene_name", y="AO-A12D.01TCGA", data=cancerProteomeData)
 print (datetime.now() - startTime)
 '''
 cancerProteomeData.plot()
+=======
+#ax = sns.barplot(x="gene_name", y="AO-A12D.01TCGA", data=cancerProteomeData)
+cancerProteomeDataPivot = cancerProteomeData.pivot('RefSeq_accession_number', 'gene_name', 'AO-A12D.01TCGA')
+cancerProteomeDataPivot.plot()
+>>>>>>> origin/master
 plt.title("iTRAQ Patient Sample Analysis")
 plt.xlabel("TCGA Patient Respective to CSV Index")
 plt.ylabel("Recorded Numeric Value with Respect to Recorded Field")
@@ -57,3 +63,4 @@ plt.ylabel('Tissue Sample', size = 15)
 plt.title('Gene Activity', size = 15)
 sns.heatmap(cancerProteomeDataPivot, annot=True, fmt='.1f', linewidths=.5, square=True, cmap='Blues_r');
 '''
+print (datetime.now() - startTime)
